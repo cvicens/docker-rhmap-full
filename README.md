@@ -32,7 +32,7 @@ docker build -t $PROJECT_ID/$IMAGE_NAME:$IMAGE_VERSION .
 
 ## Now let's run the image
 
-As you can see below we're exposing port 8001 but you have to export the ports you need. Pay attention to the docker environment variables SSH_ID_RSA and SSH_ID_RSA_PUB, these variables should point to your ssh keys private and public repectively, bear in mind that because they are referred to the container filesystem they should point to /usr/projects. For instance if your key files are your_id_rsa and your_id_rsa.pub and you have copied to ./projects then inside the container the paths would be repectively /usr/projects/your_id_rsa and /usr/projects/your_id_rsa.pub
+As you can see below we're exposing port 8001 but you have to export the ports you need. Pay attention to the docker environment variables SSH_ID_RSA and SSH_ID_RSA_PUB, these variables should point to your ssh keys private and public respectively, bear in mind that because they are referred to the container filesystem they should point to /usr/projects. For instance if your key files are your_id_rsa and your_id_rsa.pub and you have copied to ./projects then inside the container the paths would be respectively /usr/projects/your_id_rsa and /usr/projects/your_id_rsa.pub
 
 ```
 docker run -p=8001:8001 -it --rm -v $(pwd)/projects:/usr/projects -e SSH_ID_RSA='/usr/projects/your_id_rsa' -e SSH_ID_RSA_PUB='/usr/projects/your_id_rsa.pub' --name $CONTAINER_NAME $PROJECT_ID/$IMAGE_NAME:$IMAGE_VERSION /bin/bash
