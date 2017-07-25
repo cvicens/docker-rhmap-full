@@ -24,10 +24,6 @@ RUN npm install -g grunt-cli
 
 # Create app directory
 RUN mkdir -p /usr/projects
-
-ADD projects/oracle-test /usr/projects/oracle-test
-RUN cd /usr/projects/oracle-test && npm install
-
 WORKDIR /usr/projects
 
 # Dir for mongodb data

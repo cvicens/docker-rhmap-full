@@ -3,7 +3,7 @@
 ## Clone this repo
 
 ```
-$ git clone https://github.com/cvicens/docker-rhmap
+$ git clone https://github.com/cvicens/docker-rhmap-full
 ```
 
 ## Create a directory to run your projects locally
@@ -16,8 +16,8 @@ $ mkdir projects
 ## Set up environment to name the image properly
 
 ```
-export PROJECT_ID="rhmap-docker"
-export IMAGE_NAME="node-4.4"
+export PROJECT_ID="rhmap-docker-full"
+export IMAGE_NAME="rhmap-4.4"
 export IMAGE_VERSION="v1.0"
 export CONTAINER_NAME="rhmap-docker-dev"
 ```
@@ -33,7 +33,7 @@ docker build -t $PROJECT_ID/$IMAGE_NAME:$IMAGE_VERSION .
 As you can see below we're exposing port 8001 but you have to export the ports you need.
 
 ```
-docker run -p=8001:8001 -it --rm -v $(pwd)/projects:/usr/projects --name $CONTAINER_NAME $PROJECT_ID/$IMAGE_NAME:$IMAGE_VERSION /bin/bash
+docker run -p=8001:8001 -it --rm -v $(pwd)/projects:/usr/projects -e SSH_ID_RSA='./your_id_rsa' -e SSH_ID_RSA_PUB='./your_id_rsa.pub' --name $CONTAINER_NAME $PROJECT_ID/$IMAGE_NAME:$IMAGE_VERSION /bin/bash
 ```
 
 ## Example: running a cloud app and a service locally
