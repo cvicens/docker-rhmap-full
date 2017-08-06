@@ -19,7 +19,7 @@ Now copy your RHMAP ssh keys to ./projects
 
 ```
 export PROJECT_ID="rhmap-docker-full"
-export IMAGE_NAME="rhmap-4.4"
+export IMAGE_NAME="rhmap-6.11"
 export IMAGE_VERSION="v1.0"
 export CONTAINER_NAME="rhmap-docker-dev"
 ```

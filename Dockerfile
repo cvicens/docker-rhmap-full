@@ -1,9 +1,10 @@
 # [START all]
-FROM node:4.4
+FROM node:6.11
 
 # Import the public key used by the package management system.
-#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+# This option works even behid a proxy, hkp:// doesn't work usually behind a proxy
+RUN wget -O- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xEA312927" | apt-key add -
 
 # Create a list file for MongoDB.
 #RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
@@ -21,6 +22,11 @@ RUN apt-get update && apt-get install -y \
 # Install FHC
 RUN npm install -g fh-fhc
 RUN npm install -g grunt-cli
+RUN npm install -g ionic
+
+# FH mongodb name
+ENV FH_LOCAL_DB_NAME FH_LOCAL
+ENV FH_LOCAL_COLLECTION_PREFIX fh_NO-APPNAME-DEFINED
 
 # Create app directory
 RUN mkdir -p /usr/projects
